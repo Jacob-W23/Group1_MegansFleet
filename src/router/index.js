@@ -22,7 +22,7 @@ const routes = [
 
   },
   {
-    path: '/MaintenanceReports',
+    path: '/Maintenance',
     name: 'maintenance',
 
   },
