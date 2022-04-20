@@ -11,6 +11,7 @@
 
 import Login from "@/components/Login.vue";
 import authHeader from "@/components/AuthHeader.vue";
+import store from "@/store/index.js";
 
 export default {
   name: "LoginView",
@@ -18,6 +19,11 @@ export default {
   components: {
     Login,
     authHeader,
+  },
+  computed: {
+    auth: function () {
+      return store.state.auth;
+    },
   },
 };
 </script>

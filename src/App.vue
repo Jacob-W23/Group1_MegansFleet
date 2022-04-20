@@ -1,14 +1,31 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/Trucks">Trucks</router-link> |
-      <router-link to="/Maintenance">Maintenance Reports</router-link>
+      <router-link to="/">Home</router-link>
+      <router-link to="/login">Login</router-link>
+      <router-link to="/Trucks" v-if="auth">Trucks</router-link>
+      <router-link to="/Maintenance" v-if="auth"
+        >Maintenance Reports</router-link
+      >
     </nav>
     <router-view />
   </div>
 </template>
+
+
+<script>
+import store from "@/store/index.js";
+export default {
+  name: "mainView",
+
+  components: {},
+  computed: {
+    auth: function () {
+      return store.state.auth;
+    },
+  },
+};
+</script>
 
 <style>
 #app {
