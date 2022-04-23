@@ -27,6 +27,11 @@ const routes = [
     name: 'maintenance',
 
   },
+  {
+    path: '/About',
+    name: 'about',
+
+  },
 
 ]
 

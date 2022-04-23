@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <viewTrucks />
     <button v-if="!addTruckToggle" v-on:click="toggle">Add Truck</button>
     <addTruck v-if="addTruckToggle" />
+    <viewTrucks />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import viewTrucks from "@/components/trucks.vue";
 import store from "@/store/index.js";
 
 export default {
-  name: "addTruckView",
+  name: "trucksView",
 
   components: {
     viewTrucks,
