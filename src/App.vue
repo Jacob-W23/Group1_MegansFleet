@@ -11,16 +11,20 @@
     </header>
 
     <nav>
-      <ul>
-        <li><router-link to="/" class="active">Home</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>
-        <li><router-link to="/Trucks" v-if="auth">Trucks</router-link></li>
-        <li>
+      <ul class="navUl">
+        <li class="navLi">
+          <router-link to="/" class="active">Home</router-link>
+        </li>
+        <li class="navLi"><router-link to="/login">Login</router-link></li>
+        <li class="navLi">
+          <router-link to="/Trucks" v-if="auth">Trucks</router-link>
+        </li>
+        <li class="navLi">
           <router-link to="/Maintenance" v-if="auth"
             >Maintenance Reports</router-link
           >
         </li>
-        <li><a href="#about">About</a></li>
+        <li class="navLi"><a href="#about">About</a></li>
       </ul>
     </nav>
     <router-view />
@@ -65,7 +69,7 @@ body {
   background-color: rgba(252, 252, 252, 0.884);
 }
 
-ul {
+ul.navUl {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -75,7 +79,7 @@ ul {
   top: 0;
 }
 
-li {
+li.navLi {
   float: left;
   font-size: 25px;
   font-family: sans-serif;

@@ -17,6 +17,7 @@ export default new Vuex.Store({
         model: "Cascadia 125 6x4",
         miles: "305000",
         status: "On Road",
+        maintenance: "300000"
       },
       {
         id: "2",
@@ -27,6 +28,7 @@ export default new Vuex.Store({
         model: "FL70",
         miles: "436000",
         status: "Maintenance",
+        maintenance: "430000"
       },
       {
         id: "3",
@@ -37,8 +39,10 @@ export default new Vuex.Store({
         model: "Chevrolet Silverado HD 5500",
         miles: "234000",
         status: "In Lot",
+        maintenance: "230000"
       },
     ],
+    errors: [],
     addTruckToggle: false,
   },
   getters: {

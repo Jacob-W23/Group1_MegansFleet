@@ -11,6 +11,7 @@
           <th class="tg-c3ow">Vehicle Model</th>
           <th class="tg-c3ow">Vehicle Current Mileage</th>
           <th class="tg-c3ow">Vehicle Status</th>
+          <th class="tg-c3ow">Vehicle Last Maintenance Mileage</th>
           <th></th>
         </tr>
       </thead>
@@ -25,6 +26,9 @@
             {{ Truck.miles | formatNumber }}
           </td>
           <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.status }}</td>
+          <td class="tg-e3ua" v-if="index % 2 == 1">
+            {{ Truck.maintenance | formatNumber }}
+          </td>
           <td class="tg-e3ua" v-if="index % 2 == 1"><button>Edit</button></td>
 
           <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.dotID }}</td>
@@ -36,6 +40,9 @@
             {{ Truck.miles | formatNumber }}
           </td>
           <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.status }}</td>
+          <td class="tg-7btt" v-if="index % 2 == 0">
+            {{ Truck.maintenance | formatNumber }}
+          </td>
           <td class="tg-7btt" v-if="index % 2 == 0"><button>Edit</button></td>
         </tr>
       </tbody>
