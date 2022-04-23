@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h2 id="home">Home</h2>
+
+    <h3>Welcome to Megan's Fleet Truck Tracker!</h3>
+
+    <p v-if="!auth">Login to view and update Trucks</p>
+    <loginView />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import loginView from "@/views/LoginView.vue";
+import store from "@/store/index.js";
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    loginView,
+  },
+  computed: {
+    auth: function () {
+      return store.state.auth;
+    },
   },
 };
 </script>
