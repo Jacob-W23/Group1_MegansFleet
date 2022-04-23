@@ -44,6 +44,7 @@ export default new Vuex.Store({
     ],
     errors: [],
     addTruckToggle: false,
+    editToggle: false,
   },
   getters: {
   },

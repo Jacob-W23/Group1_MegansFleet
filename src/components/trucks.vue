@@ -22,84 +22,125 @@
       </thead>
       <tbody>
         <tr v-for="(Truck, index) in Trucks" :key="index">
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.dotID }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.year }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.type }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.make }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.model }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.dotID }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.year }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.type }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.make }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.model }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >
             {{ Truck.miles | formatNumber }}
           </td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">{{ Truck.status }}</td>
-          <td class="tg-e3ua" v-if="index % 2 == 1">
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >{{ Truck.status }}</td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" >
             {{ Truck.maintenance | formatNumber }}
           </td>
-          <td class="tg-e3ua" v-if="index % 2 == 1"><button class="editButtonClass">Edit</button></td>
-
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.dotID }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.year }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.type }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.make }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.model }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">
-            {{ Truck.miles | formatNumber }}
-          </td>
-          <td class="tg-7btt" v-if="index % 2 == 0">{{ Truck.status }}</td>
-          <td class="tg-7btt" v-if="index % 2 == 0">
-            {{ Truck.maintenance | formatNumber }}
-          </td>
-          <td class="tg-7btt" v-if="index % 2 == 0"><button class="editButtonClass">Edit</button></td>
+          <td v-bind:class="{
+          tge3ua: index % 2 == 1,
+          tg7btt: index % 2 == 0,
+        }" ><button class="editButtonClass">Edit</button></td>      
         </tr>
+        
         <tr v-if="addTruckToggle">
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }" >
             <input
               type="text"
               v-model="truckForm.dotID"
               @keypress="validateNumber"
             />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <input
               type="text"
               v-model="truckForm.year"
               @keypress="validateNumber"
             />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <select v-model="truckForm.type">
               <option value="Full Sleeper">Full Sleeper</option>
               <option value="Single Cab">Single Cab</option>
               <option value="Single Axle">Single Axle</option>
             </select>
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <input type="text" v-model="truckForm.make" />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <input type="text" v-model="truckForm.model" />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <input
               type="text"
               v-model="truckForm.miles"
               @keypress="validateNumber"
             />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <select v-model="truckForm.status">
               <option value="In Lot">In Lot</option>
               <option value="On Road">On Road</option>
               <option value="Maintenance">Maintenance</option>
             </select>
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <input
               type="text"
               v-model="truckForm.maintenance"
               @keypress="validateNumber"
             />
           </td>
-          <td class="tg-e3ua">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
             <button class="editButtonClass" type="submit" v-on:click.prevent="form">Add Truck</button>
             <button class="cancelButtonClass" v-on:click.prevent="toggleClear">Cancel</button>
           </td>

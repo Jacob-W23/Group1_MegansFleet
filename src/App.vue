@@ -152,14 +152,14 @@ hr.line {
   word-break: normal;
   font-weight: bold;
 }
-.tg .tg-e3ua {
+.tg .tge3ua {
   background-color: rgb(207, 207, 207);
   border-color: inherit;
   text-align: center;
   vertical-align: top;
 }
 
-.tg .tg-7btt {
+.tg .tg7btt {
   border-color: inherit;
   background-color: white;
   text-align: center;
