@@ -1,61 +1,75 @@
 <template>
   <div>
-    <form method="post" action="" >
-      <fieldset
-        v-bind:class="{
-          validStyle: truckForm.valid,
-          invalidStyle: truckForm.invalid,
-        }"
-      >
-        <legend>New Truck</legend>
-        <p v-if="errors.length">
-    <b>Please correct the following error(s):</b>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-    </ul>
-    </p>
-        <label
-          >DOT ID: <input type="text" v-model="truckForm.dotID" @keypress="validateNumber"
-        /></label>
-        <label>
-          Type:
-          <select v-model="truckForm.type" >
-            <option value="Full Sleeper">Full Sleeper</option>
-            <option value="Single Cab">Single Cab</option>
-            <option value="Single Axle">Single Axle</option>
-          </select>
-        </label>
-        <br />
-        <br />
-        <label
-          >Year: <input type="text" v-model="truckForm.year" @keypress="validateNumber"
-        /></label>
-        <label
-          >Make: <input type="text" v-model="truckForm.make" 
-        /></label>
-        <label
-          >Model: <input type="text" v-model="truckForm.model" 
-        /></label>
-        <label
-          >Miles: <input type="text" v-model="truckForm.miles" @keypress="validateNumber"
-        /></label>
-        <label
-          >Last Maintence Mileage:
-          <input type="text" v-model="truckForm.maintenance" @keypress="validateNumber"
-        /></label>
-        <label>
-          Status:
-          <select v-model="truckForm.status" >
-            <option value="In Lot">In Lot</option>
-            <option value="On Road">On Road</option>
-            <option value="Maintenance">Maintenance</option>
-          </select>
-        </label>
-        <br />
-        <br />
-        <button type="submit" v-on:click.prevent="form">Add Truck</button>
-        <button v-on:click="toggleClear">Cancel</button>
-      </fieldset>
+    <form method="post" action="">
+      <tr>
+        <td>
+          <label
+            >DOT ID:
+            <input
+              type="text"
+              v-model="truckForm.dotID"
+              @keypress="validateNumber"
+          /></label>
+        </td>
+        <td>
+          <label
+            >Year:
+            <input
+              type="text"
+              v-model="truckForm.year"
+              @keypress="validateNumber"
+          /></label>
+        </td>
+        <td>
+          <label>
+            Type:
+            <select v-model="truckForm.type">
+              <option value="Full Sleeper">Full Sleeper</option>
+              <option value="Single Cab">Single Cab</option>
+              <option value="Single Axle">Single Axle</option>
+            </select>
+          </label>
+        </td>
+
+        <td>
+          <label>Make: <input type="text" v-model="truckForm.make" /></label>
+        </td>
+        <td>
+          <label>Model: <input type="text" v-model="truckForm.model" /></label>
+        </td>
+        <td>
+          <label
+            >Miles:
+            <input
+              type="text"
+              v-model="truckForm.miles"
+              @keypress="validateNumber"
+          /></label>
+        </td>
+        <td>
+          <label
+            >Last Maintence Mileage:
+            <input
+              type="text"
+              v-model="truckForm.maintenance"
+              @keypress="validateNumber"
+          /></label>
+        </td>
+        <td>
+          <label>
+            Status:
+            <select v-model="truckForm.status">
+              <option value="In Lot">In Lot</option>
+              <option value="On Road">On Road</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </label>
+        </td>
+        <td>
+          <button type="submit" v-on:click.prevent="form">Edit Truck</button>
+          <button v-on:click="toggleClear">Cancel</button>
+        </td>
+      </tr>
     </form>
   </div>
 </template>

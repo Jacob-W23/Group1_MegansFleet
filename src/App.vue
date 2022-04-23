@@ -169,4 +169,26 @@ hr.line {
 legend {
   font-weight: bold;
 }
+
+.editButtonClass {
+  background-color: rgb(36, 194, 104);
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.cancelButtonClass {
+  background-color: indianred;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 6px;
+  margin-right: 6px;
+}
 </style>
