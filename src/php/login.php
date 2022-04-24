@@ -11,7 +11,7 @@ if (isset($_POSt['username']) && isset($_POST['password']))
 
     if($connection->connect_error)
     {
-        $response['status'] = "error";
+        $response['outcome'] = "error";
         $response['err-msg'] = "Could not connect to database";
     }
     else
@@ -30,7 +30,7 @@ if (isset($_POSt['username']) && isset($_POST['password']))
                 {
                     if ($password == $user['password'])
                     {
-                        $response['status'] = "success";
+                        $response['outcome'] = "success";
                         $response['username'] = $username;
                         $response['auth'] = true;
 
@@ -43,7 +43,7 @@ if (isset($_POSt['username']) && isset($_POST['password']))
             }
             else
             {
-                $response['status'] = "error";
+                $response['outcome'] = "error";
                 $response['err-msg'] = "Incorrect passord";
             }
 
@@ -51,7 +51,7 @@ if (isset($_POSt['username']) && isset($_POST['password']))
         }
         else
         {
-            $response['status'] = "error";
+            $response['outcome'] = "error";
             $response['err-msg'] = "Could not get users";
         }
 
@@ -62,7 +62,7 @@ if (isset($_POSt['username']) && isset($_POST['password']))
 }
 else
 {
-    $response['status'] = "error";
+    $response['outcome'] = "error";
     $response['err-msg'] = "Missing username and/or password";
 }
 
