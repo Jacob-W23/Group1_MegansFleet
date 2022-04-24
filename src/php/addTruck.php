@@ -8,6 +8,7 @@ session_start();
 
 if ($_SESSION['auth'] && validateInput())
 {
+    $id = null;
     $dotId = $_POST['dotID'];
     $year = $_POST['year'];
     $type = $_POST['type'];
@@ -26,7 +27,22 @@ if ($_SESSION['auth'] && validateInput())
     }
     else
     {
-        //insert query goes here
+        $stmt = $connection->prepare("INSERT INTO vehicles VALUES(?,?,?,?,?,?,?,?,?)"); // modify as needed
+        $stmt->bind_param("issssssss", $id, $dotId, $year, $type, $make, $model, $miles, $status, $maint);
+
+        if ($stmt->execute())
+        {
+            $id = $connection->insert_id;
+            $response['outcome'] = "success";
+            $response['err-msg'] = "vehicle inserted as id $id";
+        }
+        else
+        {
+            $response['outcome'] = "error";
+            $response['err-msg'] = "vehicle could not be inserted";
+        }
+
+        $stmt->close();
     }
 
     $connection->close();
