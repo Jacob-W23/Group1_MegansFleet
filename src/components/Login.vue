@@ -20,6 +20,7 @@
 
 <script>
 import store from "@/store/index.js";
+import router from "@/router/index.js";
 
 export default {
   name: "loginForm",
@@ -47,6 +48,7 @@ export default {
 
       this.username = "";
       this.password = "";
+      router.push({ path: "Trucks" });
     },
     logout: function () {
       store.state.auth = false;
