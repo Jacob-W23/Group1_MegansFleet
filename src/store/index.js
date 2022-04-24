@@ -7,6 +7,8 @@ export default new Vuex.Store({
   state: {
     auth: false,
     username: "",
+    cache: [],
+    editTruckIndex: "",
     Trucks: [
       {
         id: "1",
@@ -44,7 +46,7 @@ export default new Vuex.Store({
     ],
     errors: [],
     addTruckToggle: false,
-    editToggle: false,
+    editTruckToggle: false,
   },
   getters: {
   },

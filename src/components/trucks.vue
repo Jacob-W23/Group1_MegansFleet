@@ -14,7 +14,7 @@
           <th class="tg-c3ow">Vehicle Status</th>
           <th class="tg-c3ow">Vehicle Last Maintenance Mileage</th>
           <th class="tg-c3ow">
-            <button class="editButtonClass" v-if="!addTruckToggle" v-on:click="toggle">
+            <button class="editButtonClass" v-if="!addTruckToggle" v-on:click="addToggle">
               Add Truck
             </button>
           </th>
@@ -61,7 +61,98 @@
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" ><button class="editButtonClass">Edit</button></td>      
+        }" ><button class="editButtonClass" v-on:click.prevent="editToggle(index)">Edit</button>
+        </td>      
+        </tr>
+
+        <tr v-if="editTruckToggle">
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }" >
+            <input
+              type="text"
+              v-model="truckForm.dotID"
+              @keypress="validateNumber"
+            />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <input
+              type="text"
+              v-model="truckForm.year"
+              @keypress="validateNumber"
+            />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <select v-model="truckForm.type">
+              <option value="Full Sleeper">Full Sleeper</option>
+              <option value="Single Cab">Single Cab</option>
+              <option value="Single Axle">Single Axle</option>
+            </select>
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <input type="text" v-model="truckForm.make" />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <input type="text" v-model="truckForm.model" />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <input
+              type="text"
+              v-model="truckForm.miles"
+              @keypress="validateNumber"
+            />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <select v-model="truckForm.status">
+              <option value="In Lot">In Lot</option>
+              <option value="On Road">On Road</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <input
+              type="text"
+              v-model="truckForm.maintenance"
+              @keypress="validateNumber"
+            />
+          </td>
+          <td v-bind:class="{
+          tge3ua: Trucks.length % 2 == 1,
+          tg7btt: Trucks.length % 2 == 0,
+        }">
+            <button class="editButtonClass" type="submit" v-on:click.prevent="editForm">
+          Save
+        </button>
+        <button class="cancelButtonClass" v-on:click.prevent="editToggle">Cancel</button>
+        <button
+          class="cancelButtonClass"
+          v-on:click.prevent="deleteTruck()"
+        >
+          Delete
+        </button>
+          </td>
         </tr>
         
         <tr v-if="addTruckToggle">
@@ -173,6 +264,9 @@ export default {
     addTruckToggle: function () {
       return store.state.addTruckToggle;
     },
+    editTruckToggle: function () {
+      return store.state.editTruckToggle;
+    },
   },
   filters: {
     formatNumber: function (value) {
@@ -210,19 +304,34 @@ export default {
       this.truckForm.miles = "";
       this.truckForm.status = "";
       this.truckForm.maintenance = "";
+    },
 
+    deleteTruck: function () {
+      store.state.Trucks.splice(store.state.editTruckIndex, 1);
+      store.state.editTruckToggle = !store.state.editTruckToggle;
+    },
+    addToggle() {
       store.state.addTruckToggle = !store.state.addTruckToggle;
     },
-    toggle() {
-      store.state.addTruckToggle = !store.state.addTruckToggle;
+    editToggle(i) {
+      store.state.editTruckToggle = !store.state.editTruckToggle;
+      store.state.editTruckIndex = i;
+      this.truckForm = Object.assign({}, store.state.Trucks[i]);
     },
     toggleClear() {
-      this.toggle();
+      this.addToggle();
       store.state.errors = [];
+    },
+    editForm() {
+      if (this.checkForm()) {
+        this.deleteTruck();
+        this.addTruck();
+      }
     },
     form() {
       if (this.checkForm()) {
         this.addTruck();
+        store.state.addTruckToggle = !store.state.addTruckToggle;
       }
     },
     checkForm: function () {

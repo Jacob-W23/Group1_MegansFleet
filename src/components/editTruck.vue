@@ -1,48 +1,53 @@
 <template>
   <div>
-    <tr>
-      <td class="tg-e3ua" v-if="editToggle">
+    <tr v-for="(Truck, index) in Trucks" :key="index">
+      <td class="tge3ua" v-if="editToggle">
         <input type="text" v-model="Truck.dotID" @keypress="validateNumber" />
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <input type="text" v-model="Truck.year" @keypress="validateNumber" />
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <select v-model="Truck.type">
           <option value="Full Sleeper">Full Sleeper</option>
           <option value="Single Cab">Single Cab</option>
           <option value="Single Axle">Single Axle</option>
         </select>
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <input type="text" v-model="Truck.make" />
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <input type="text" v-model="Truck.model" />
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <input type="text" v-model="Truck.miles" @keypress="validateNumber" />
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <select v-model="Truck.status">
           <option value="In Lot">In Lot</option>
           <option value="On Road">On Road</option>
           <option value="Maintenance">Maintenance</option>
         </select>
       </td>
-      <td class="tg-e3ua" v-if="editToggle">
+      <td class="tge3ua" v-if="editToggle">
         <input
           type="text"
           v-model="Truck.maintenance"
           @keypress="validateNumber"
         />
       </td>
-      <td class="tg-e3ua">
+      <td class="tge3ua">
         <button class="editButtonClass" type="submit" v-on:click.prevent="">
           Save
         </button>
         <button class="cancelButtonClass" v-on:click.prevent="">Cancel</button>
-        <button class="cancelButtonClass" v-on:click.prevent="">Delete</button>
+        <button
+          class="cancelButtonClass"
+          v-on:click.prevent="deleteTruck(index)"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   </div>
@@ -159,6 +164,9 @@ export default {
       if (keyCode < 48 || keyCode > 57) {
         event.preventDefault();
       }
+    },
+    deleteEvent: function (index) {
+      store.state.Trucks.splice(index, 1);
     },
   },
   watch: {
