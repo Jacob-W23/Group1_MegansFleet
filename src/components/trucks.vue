@@ -14,7 +14,7 @@
           <th class="tg-c3ow">Vehicle Status</th>
           <th class="tg-c3ow">Vehicle Last Maintenance Mileage</th>
           <th class="tg-c3ow">
-            <button class="editButtonClass" v-if="!addTruckToggle" v-on:click="addToggle">
+            <button class="editButtonClass" v-if="!addTruckToggle && !editTruckToggle" v-on:click="addToggle">
               Add Truck
             </button>
           </th>
@@ -61,7 +61,7 @@
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" ><button class="editButtonClass" v-on:click.prevent="editToggle(index)">Edit</button>
+        }" ><button class="editButtonClass" v-on:click.prevent="editToggle(index)" v-if="!editTruckToggle && !addTruckToggle">Edit</button>
         </td>      
         </tr>
 
@@ -233,7 +233,7 @@
           tg7btt: Trucks.length % 2 == 0,
         }">
             <button class="editButtonClass" type="submit" v-on:click.prevent="form">Add Truck</button>
-            <button class="cancelButtonClass" v-on:click.prevent="toggleClear">Cancel</button>
+            <button class="cancelButtonClass" v-on:click.prevent="addToggle">Cancel</button>
           </td>
         </tr>
       </tbody>
@@ -285,8 +285,6 @@ export default {
         miles: "",
         status: "",
         maintenance: "",
-        valid: false,
-        invalid: true,
       },
     };
   },
@@ -294,7 +292,8 @@ export default {
     addTruck: function () {
       this.truckForm.id = store.state.Trucks.length + 1;
       store.commit("addTruck", this.truckForm);
-
+    },
+    clearForm: function () {
       this.truckForm.id = null;
       this.truckForm.dotID = "";
       this.truckForm.year = "";
@@ -312,14 +311,13 @@ export default {
     },
     addToggle() {
       store.state.addTruckToggle = !store.state.addTruckToggle;
+      store.state.errors = [];
+      this.clearForm();
     },
     editToggle(i) {
       store.state.editTruckToggle = !store.state.editTruckToggle;
       store.state.editTruckIndex = i;
       this.truckForm = Object.assign({}, store.state.Trucks[i]);
-    },
-    toggleClear() {
-      this.addToggle();
       store.state.errors = [];
     },
     editForm() {
@@ -394,29 +392,6 @@ export default {
       if (keyCode < 48 || keyCode > 57) {
         event.preventDefault();
       }
-    },
-  },
-  watch: {
-    truckForm: {
-      handler: function () {
-        if (
-          this.truckForm.dotID == "" ||
-          this.truckForm.year == "" ||
-          this.truckForm.type == "" ||
-          this.truckForm.make == "" ||
-          this.truckForm.model == "" ||
-          this.truckForm.status == "" ||
-          this.truckForm.maintenance == "" ||
-          this.truckForm.miles == ""
-        ) {
-          this.truckForm.valid = false;
-          this.truckForm.invalid = true;
-        } else {
-          this.truckForm.valid = true;
-          this.truckForm.invalid = false;
-        }
-      },
-      deep: true,
     },
   },
 };

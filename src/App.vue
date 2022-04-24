@@ -48,16 +48,6 @@ export default {
 </script>
 
 <style>
-.validStyle {
-  background-color: lightgreen;
-  border: 1px solid white;
-}
-
-.invalidStyle {
-  background-color: salmon;
-  border: 1px solid white;
-}
-
 .logo {
   display: block;
   margin-left: auto;
