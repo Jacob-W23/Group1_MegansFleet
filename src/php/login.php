@@ -8,9 +8,11 @@ if (isset($_POSt['username']) && isset($_POST['password']))
     $password = $_POST['password'];
 
     $connection = new mysqli($hn, $un, $pw, $db);
+
     if($connection->connect_error)
     {
-        $response['status'] = 'error';
+        $response['status'] = "error";
+        $response['err-msg'] = "Could not connect to database";
     }
     else
     {
@@ -20,9 +22,50 @@ if (isset($_POSt['username']) && isset($_POST['password']))
         if ($stmt->execute())
         {
             $users = $stmt->get_result();
+            $numRows = $users->num_rows;
 
+            if ($numRows > 0)
+            {
+                foreach ($users as $user)
+                {
+                    if ($password == $user['password'])
+                    {
+                        $response['status'] = "success";
+                        $response['username'] = $username;
+                        $response['auth'] = true;
+
+                        session_start();
+                        $response['session'] = session_id();
+                        $_SESSION['username'] = $username;
+                        $_SESSION['auth'] = true;
+                    }
+                }
+            }
+            else
+            {
+                $response['status'] = "error";
+                $response['err-msg'] = "Incorrect passord";
+            }
+
+            $users->close();
         }
+        else
+        {
+            $response['status'] = "error";
+            $response['err-msg'] = "Could not get users";
+        }
+
+        $stmt->close();
     }
+
+    $connection->close();
 }
+else
+{
+    $response['status'] = "error";
+    $response['err-msg'] = "Missing username and/or password";
+}
+
+echo json_encode($response);
 
 ?>
