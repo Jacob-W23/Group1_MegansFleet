@@ -5,18 +5,18 @@
     <h3>Welcome to Megan's Fleet Truck Tracker!</h3>
 
     <p v-if="!auth">Login to view and update Trucks</p>
-    <loginiasdufgbsweriView />
+    <loginView />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import loginiasdufgbsweriView from "@/views/LoginView.vue";
+import loginView from "@/views/LoginView.vue";
 import store from "@/store/index.js";
 export default {
   name: "HomeView",
   components: {
-    loginiasdufgbsweriView,
+    loginView,
   },
   computed: {
     auth: function () {
