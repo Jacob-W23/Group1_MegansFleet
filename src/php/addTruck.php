@@ -1,10 +1,22 @@
 <?php
 
+require_once "config.php";
+require_once "utils.php";
+
 session_id($_POST['session']);
 session_start();
 
 if ($_SESSION['auth'] && validateInput())
 {
+    $dotId = $_POST['dotID'];
+    $year = $_POST['year'];
+    $type = $_POST['type'];
+    $make = $_POST['make'];
+    $model = $_POST['model'];
+    $miles = $_POST['miles'];
+    $status = $_POST['status'];
+    $maint = $_POST['maintenance'];
+
     $connection = new mysqli($hn, $un, $pw, $db);
 
     if ($connection->connect_error)
@@ -16,20 +28,15 @@ if ($_SESSION['auth'] && validateInput())
     {
         //insert query goes here
     }
-}
 
-function validateInput()
+    $connection->close();
+}
+else
 {
-    $fields = array('dotID', 'year', 'type', 'make', 'model', 'miles', 'status', 'maintenance');
-    foreach ($fields as $field)
-    {
-        if (!isset($_POST[$field]))
-        {
-            return false;
-        }
-    }
-
-    return true;
+    $response['outcome'] = "error";
+    $response['err-msg'] = "Not authorized or incomplete data";
 }
+
+echo json_encode($response);
 
 ?>
