@@ -24,7 +24,7 @@
             >Maintenance Reports</router-link
           >
         </li>
-        <li class="navLi"><a href="#about">About</a></li>
+        <li class="navLi"><router-link to="/About">About</router-link></li>
       </ul>
     </nav>
     <router-view />

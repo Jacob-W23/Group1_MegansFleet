@@ -5,14 +5,14 @@
     <table class="tg">
       <thead>
         <tr>
-          <th class="tg-c3ow">Vehicle Dot ID</th>
-          <th class="tg-c3ow">Vehicle Year</th>
-          <th class="tg-c3ow">Vehicle Type</th>
-          <th class="tg-c3ow">Vehicle Make</th>
-          <th class="tg-c3ow">Vehicle Model</th>
-          <th class="tg-c3ow">Vehicle Current Mileage</th>
-          <th class="tg-c3ow">Vehicle Status</th>
-          <th class="tg-c3ow">Vehicle Last Maintenance Mileage</th>
+          <th class="tg-c3ow">Dot ID</th>
+          <th class="tg-c3ow">Year</th>
+          <th class="tg-c3ow">Type</th>
+          <th class="tg-c3ow">Make</th>
+          <th class="tg-c3ow">Model</th>
+          <th class="tg-c3ow">Current Mileage</th>
+          <th class="tg-c3ow">Status</th>
+          <th class="tg-c3ow">Last Maintenance Mileage</th>
           <th class="tg-c3ow">
             <button class="editButtonClass" v-if="!addTruckToggle && !editTruckToggle" v-on:click="addToggle">
               Add Truck
