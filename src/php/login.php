@@ -39,14 +39,19 @@ if (isset($_POSt['username']) && isset($_POST['password']))
                         $_SESSION['username'] = $username;
                         $_SESSION['auth'] = true;
                     }
+                    else
+                    {
+                        $response['outcome'] = "error";
+                        $response['err-msg'] = "Incorrect passord";
+                    }
                 }
             }
             else
             {
                 $response['outcome'] = "error";
-                $response['err-msg'] = "Incorrect passord";
+                $response['err-msg'] = "This user does not exist";
             }
-
+            
             $users->close();
         }
         else
