@@ -19,17 +19,20 @@ if ($_SESSION['auth'])
         $stmt = $connection->prepare("SELECT * FROM vehicles");
         if ($stmt->execute())
         {
-            $vehicles = $stmt->get_result();
+            $vehiclesResult = $stmt->get_result();
             $numRows = $vehicles->num_rows;
 
             if ($numRows > 0)
             {
                 $response['outcome'] = "success";
+                $vehicles = [];
 
-                foreach ($vehicles as $vehicle)
+                foreach ($vehiclesResult as $vehicle)
                 {
-                    $response['vehicles'] = $vehicle;
+                    $vehicles = $vehicle;
                 }
+
+                $response['vehicles'] = $vehicles;
             }
             else
             {
