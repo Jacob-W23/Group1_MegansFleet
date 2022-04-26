@@ -25,38 +25,38 @@
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.dotID }}</td>
+        }" >{{ Truck.DOTID }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.year }}</td>
+        }" >{{ Truck.Year }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.type }}</td>
+        }" >{{ Truck.Type }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.make }}</td>
+        }" >{{ Truck.Make }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.model }}</td>
+        }" >{{ Truck.Model }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
         }" >
-            {{ Truck.miles | formatNumber }}
+            {{ Truck.CurrentMileage | formatNumber }}
           </td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.status }}</td>
+        }" >{{ Truck.Status }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
         }" >
-            {{ Truck.maintenance | formatNumber }}
+            {{ Truck.LastMaintenenceMileage | formatNumber }}
           </td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
@@ -72,7 +72,7 @@
         }" >
             <input
               type="text"
-              v-model="truckForm.dotID"
+              v-model="truckForm.DOTID"
               @keypress="validateNumber"
             />
           </td>
@@ -82,7 +82,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.year"
+              v-model="truckForm.Year"
               @keypress="validateNumber"
             />
           </td>
@@ -90,7 +90,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.type">
+            <select v-model="truckForm.Type">
               <option value="Full Sleeper">Full Sleeper</option>
               <option value="Single Cab">Single Cab</option>
               <option value="Single Axle">Single Axle</option>
@@ -100,13 +100,13 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.make" />
+            <input type="text" v-model="truckForm.Make" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.model" />
+            <input type="text" v-model="truckForm.Model" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
@@ -114,7 +114,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.miles"
+              v-model="truckForm.CurrentMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -122,7 +122,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.status">
+            <select v-model="truckForm.Status">
               <option value="In Lot">In Lot</option>
               <option value="On Road">On Road</option>
               <option value="Maintenance">Maintenance</option>
@@ -134,7 +134,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.maintenance"
+              v-model="truckForm.LastMaintenenceMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -288,7 +288,18 @@ export default {
       },
     };
   },
+  created: function() {
+    this.getTrucks();
+  },
   methods: {
+    getTrucks: function() {
+      fetch("http://localhost/src/php/getTrucks.php")
+      .then(response => response.json())
+      .then(function(data) {
+        store.state.Trucks = data.vehicles;
+        console.log(data)
+      })
+    },
     addTruck: function () {
       this.truckForm.id = store.state.Trucks.length + 1;
       store.commit("addTruck", this.truckForm);

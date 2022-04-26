@@ -9,41 +9,7 @@ export default new Vuex.Store({
     username: "",
     cache: [],
     editTruckIndex: "",
-    Trucks: [
-      {
-        id: "1",
-        dotID: "0759894",
-        year: "2016",
-        type: "Full Sleeper",
-        make: "Freightliner",
-        model: "Cascadia 125 6x4",
-        miles: "305000",
-        status: "On Road",
-        maintenance: "300000"
-      },
-      {
-        id: "2",
-        dotID: "0113024",
-        year: "2001",
-        type: "Single Cab",
-        make: "Freightliner",
-        model: "FL70",
-        miles: "436000",
-        status: "Maintenance",
-        maintenance: "430000"
-      },
-      {
-        id: "3",
-        dotID: "726051",
-        year: "2012",
-        type: "Single Axle",
-        make: "Chevrolet",
-        model: "Chevrolet Silverado HD 5500",
-        miles: "234000",
-        status: "In Lot",
-        maintenance: "230000"
-      },
-    ],
+    Trucks: [],
     errors: [],
     addTruckToggle: false,
     editTruckToggle: false,
@@ -54,6 +20,11 @@ export default new Vuex.Store({
     addTruck: function (state, payload) {
       state.Trucks.push(Object.assign({}, payload));
     },
+    setAuth: function(state, payload) {
+      state.auth = payload.auth;
+      state.session = payload.session;
+      console.log(state.auth);
+    }
   },
   actions: {
   },
