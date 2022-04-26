@@ -2,75 +2,54 @@
 
 require_once "config.php";
 
-if (isset($_POSt['username']) && isset($_POST['password']))
-{
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+$username = $_POST["username"];
+$password = $_POST["password"];
 
-    $connection = new mysqli($hn, $un, $pw, $db);
+$conn = new mysqli($hn,$un,$pw,$db);
 
-    if($connection->connect_error)
-    {
-        $response['outcome'] = "error";
-        $response['err-msg'] = "Could not connect to database";
-    }
-    else
-    {
-        $stmt = $connection->prepare("SELECT * FROM users WHERE username=?");//modify query based on db.
-        $stmt->bind_param("s", $username);
+if($conn->connect_error) {
+    $res["status"] = "error";
+    $res["status_message"] = "MySQL Connection Error";
+} else {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
 
-        if ($stmt->execute())
-        {
-            $users = $stmt->get_result();
-            $numRows = $users->num_rows;
+    $stmt->bind_param("s",$username);
 
-            if ($numRows > 0)
-            {
-                foreach ($users as $user)
-                {
-                    if ($password == $user['password'])
-                    {
-                        $response['outcome'] = "success";
-                        $response['username'] = $username;
-                        $response['auth'] = true;
+    if($stmt->execute()) {
+        $result = $stmt->get_result();
 
-                        session_start();
-                        $response['session'] = session_id();
-                        $_SESSION['username'] = $username;
-                        $_SESSION['auth'] = true;
-                    }
-                    else
-                    {
-                        $response['outcome'] = "error";
-                        $response['err-msg'] = "Incorrect passord";
-                    }
+        $rows = $result->num_rows;
+
+        if($rows >= 1) {
+            foreach($result as $item) {
+                if(password_verify($password,$item["UserPassword"])) {
+                    session_start();
+                    $_SESSION["role"] = $item["UserRole"];
+                    $_SESSION["username"] = $item["UserName"];
+                    $_SESSION["id"] = $item["UserID"];
+                    $_SESSION["auth"] = true;
+
+                    $res["status"] = "Success";
+                    $res["role"] = $item["UserRole"];
+                    $res["username"] = $item["UserName"];
+                    $res["id"] = $item["UserID"];
+                    $res["session"] = session_id();
+                    $res["auth"] = true;
+                } else {
+                    $res["status"] = "Error";
+                    $res["status_message"] = "Incorrect password.";
                 }
             }
-            else
-            {
-                $response['outcome'] = "error";
-                $response['err-msg'] = "This user does not exist";
-            }
-            
-            $users->close();
+        } else {
+            $res["status"] = "Error";
+            $res["status_message"] = "No user found.";
         }
-        else
-        {
-            $response['outcome'] = "error";
-            $response['err-msg'] = "Could not get users";
-        }
-
-        $stmt->close();
+    } else {
+        $res["status"] = "Error";
+        $res["status_message"] = $stmt->error;
     }
-
-    $connection->close();
-}
-else
-{
-    $response['outcome'] = "error";
-    $response['err-msg'] = "Missing username and/or password";
 }
 
-echo json_encode($response);
+echo json_encode($res);
 
 ?>

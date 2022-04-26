@@ -13,7 +13,7 @@
     <nav>
       <ul class="navUl">
         <li class="navLi">
-          <router-link to="/" class="active">Home</router-link>
+          <router-link to="/">Home</router-link>
         </li>
         <li class="navLi"><router-link to="/login">Login</router-link></li>
         <li class="navLi">
@@ -84,11 +84,11 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+li a:hover:not(.router-link-exact-active) {
   background-color: #111;
 }
 
-.active {
+nav a.router-link-exact-active {
   background-color: #ecdd00;
   color: black;
   font-weight: bold;

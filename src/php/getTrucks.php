@@ -2,59 +2,47 @@
 //will likely be modified when db is finished.
 require_once "config.php";
 
-session_id($_POST['session']);
+$session = $_POST["session"];
+
+session_id($session);
 session_start();
 
-if ($_SESSION['auth'])
-{
-    $connection = new mysqli($hn, $un, $pw, $db);
+$auth = $_SESSION["auth"];
 
-    if ($connection->connect_error)
-    {
+$vehicles = [];
+
+if($auth) {
+
+    $connection = new mysqli($hn, $un, $pw, $db);
+    
+    if ($connection->connect_error) {
         $response['outcome'] = "error";
         $response['err-msg'] = "Could not connect to database";
-    }
-    else
-    {
+    } else {
         $stmt = $connection->prepare("SELECT * FROM vehicles");
-        if ($stmt->execute())
-        {
-            $vehiclesResult = $stmt->get_result();
-            $numRows = $vehicles->num_rows;
-
-            if ($numRows > 0)
-            {
-                $response['outcome'] = "success";
-                $vehicles = [];
-
-                foreach ($vehiclesResult as $vehicle)
-                {
-                    $vehicles = $vehicle;
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $rows = $result->num_rows;
+            if ($rows >= 1) {
+                foreach ($result as $vehicle) {
+                    $vehicles[] = $vehicle;
+                    $response['outcome'] = "success";
+                    $response['vehicles'] = $vehicles;
                 }
-
-                $response['vehicles'] = $vehicles;
-            }
-            else
-            {
+            } else {
                 $response['outcome'] = "error";
                 $response['err-msg'] = "No vehicles found";
             }
-
-            $vehicles->close();
-        }
-        else
-        {
+        } else {
             $response['outcome'] = "error";
             $response['err-msg'] = "Could not get vehicles";
         }
-
         $stmt->close();
     }
-
+    
     $connection->close();
-}
-else
-{
+    
+} else {
     $response['outcome'] = "error";
     $response['err-msg'] = "Not authorized";
 }
