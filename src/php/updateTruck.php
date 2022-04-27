@@ -3,12 +3,15 @@
 require_once "config.php";
 require_once "utils.php";
 
-session_id($_POST['session']);
+$session = $_POST["session"];
+
+session_id($session);
 session_start();
 
-if ($_SESSION['auth'] && validateInput() && isset($_POST['id']))
+$auth = $_SESSION["auth"];
+
+if ($auth && validateInput() && isset($_POST['dotID']))
 {
-    $id = $_POST['id'];
     $dotId = $_POST['dotID'];
     $year = $_POST['year'];
     $type = $_POST['type'];
@@ -18,7 +21,8 @@ if ($_SESSION['auth'] && validateInput() && isset($_POST['id']))
     $status = $_POST['status'];
     $maint = $_POST['maintenance'];
 
-    $connection = new mysqli($hn. $un, $pw, $db);
+    mysqli_report(MYSQLI_REPORT_ALL);
+    $connection = new mysqli($hn, $un, $pw, $db);
 
     if ($connection->connect_error)
     {
@@ -26,14 +30,14 @@ if ($_SESSION['auth'] && validateInput() && isset($_POST['id']))
         $response['err-msg'] = "Could not connect to database";
     }
     else
-    { //modify if needed
-        $stmt = $connection->prepare("UPDATE vehicles SET dotID=?, year=?, type=?, make=?, model=?, miles=?, status=?, maintenance=? WHERE id=?");
-        $stmt->bind_param("ssssssssi", $dotId, $year, $type, $make, $model, $miles, $status, $maint, $id);
+    {
+        $stmt = $connection->prepare("UPDATE vehicles SET dotid=?, year=?, type=?, make=?, model=?, currentmileage=?, status=?, lastmaintenencemileage=? WHERE dotid=?");
+        $stmt->bind_param("sssssssss", $dotId, $year, $type, $make, $model, $miles, $status, $maint, $dotId);
 
         if ($stmt->execute())
         {
             $response['outcome'] = "success";
-            $response['err-msg'] = "vehicle id $id updated";
+            $response['err-msg'] = "vehicle id $dotId updated";
         }
         else
         {

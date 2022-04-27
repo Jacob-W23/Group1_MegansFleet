@@ -13,7 +13,7 @@
     <nav>
       <ul class="navUl">
         <li class="navLi">
-          <router-link to="/" class="active">Home</router-link>
+          <router-link to="/">Home</router-link>
         </li>
         <li class="navLi"><router-link to="/login">Login</router-link></li>
         <li class="navLi">
@@ -34,10 +34,8 @@
 
 <script>
 import store from "@/store/index.js";
-
 export default {
   name: "mainView",
-
   components: {},
   computed: {
     auth: function () {
@@ -55,11 +53,9 @@ export default {
   position: sticky;
   top: 0;
 }
-
 body {
   background-color: rgba(252, 252, 252, 0.884);
 }
-
 ul.navUl {
   list-style-type: none;
   margin: 0;
@@ -69,13 +65,11 @@ ul.navUl {
   position: sticky;
   top: 0;
 }
-
 li.navLi {
   float: left;
   font-size: 25px;
   font-family: sans-serif;
 }
-
 li a {
   display: block;
   color: white;
@@ -83,36 +77,29 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
-li a:hover:not(.active) {
+li a:hover:not(.router-link-exact-active) {
   background-color: #111;
 }
-
-.active {
+nav a.router-link-exact-active {
   background-color: #ecdd00;
   color: black;
   font-weight: bold;
 }
-
 h2 {
   text-align: center;
   font-family: sans-serif;
 }
-
 h3 {
   text-align: center;
   font-family: sans-serif;
 }
-
 p {
   text-align: center;
   font-family: sans-serif;
 }
-
 hr.line {
   border: 1px solid black;
 }
-
 .tg {
   border-collapse: collapse;
   border-spacing: 0;
@@ -149,18 +136,15 @@ hr.line {
   text-align: center;
   vertical-align: top;
 }
-
 .tg .tg7btt {
   border-color: inherit;
   background-color: white;
   text-align: center;
   vertical-align: top;
 }
-
 legend {
   font-weight: bold;
 }
-
 .editButtonClass {
   background-color: rgb(36, 194, 104);
   color: white;
@@ -171,7 +155,6 @@ legend {
   margin-left: 6px;
   margin-right: 6px;
 }
-
 .cancelButtonClass {
   background-color: indianred;
   color: white;

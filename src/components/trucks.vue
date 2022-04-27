@@ -25,38 +25,38 @@
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.dotID }}</td>
+        }" >{{ Truck.DOTID }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.year }}</td>
+        }" >{{ Truck.Year }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.type }}</td>
+        }" >{{ Truck.Type }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.make }}</td>
+        }" >{{ Truck.Make }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.model }}</td>
+        }" >{{ Truck.Model }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
         }" >
-            {{ Truck.miles | formatNumber }}
+            {{ Truck.CurrentMileage | formatNumber }}
           </td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
-        }" >{{ Truck.status }}</td>
+        }" >{{ Truck.Status }}</td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
           tg7btt: index % 2 == 0,
         }" >
-            {{ Truck.maintenance | formatNumber }}
+            {{ Truck.LastMaintenenceMileage | formatNumber }}
           </td>
           <td v-bind:class="{
           tge3ua: index % 2 == 1,
@@ -72,7 +72,7 @@
         }" >
             <input
               type="text"
-              v-model="truckForm.dotID"
+              v-model="truckForm.DOTID"
               @keypress="validateNumber"
             />
           </td>
@@ -82,7 +82,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.year"
+              v-model="truckForm.Year"
               @keypress="validateNumber"
             />
           </td>
@@ -90,7 +90,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.type">
+            <select v-model="truckForm.Type">
               <option value="Full Sleeper">Full Sleeper</option>
               <option value="Single Cab">Single Cab</option>
               <option value="Single Axle">Single Axle</option>
@@ -100,13 +100,13 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.make" />
+            <input type="text" v-model="truckForm.Make" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.model" />
+            <input type="text" v-model="truckForm.Model" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
@@ -114,7 +114,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.miles"
+              v-model="truckForm.CurrentMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -122,7 +122,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.status">
+            <select v-model="truckForm.Status">
               <option value="In Lot">In Lot</option>
               <option value="On Road">On Road</option>
               <option value="Maintenance">Maintenance</option>
@@ -134,7 +134,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.maintenance"
+              v-model="truckForm.LastMaintenenceMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -162,7 +162,7 @@
         }" >
             <input
               type="text"
-              v-model="truckForm.dotID"
+              v-model="truckForm.DOTID"
               @keypress="validateNumber"
             />
           </td>
@@ -172,7 +172,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.year"
+              v-model="truckForm.Year"
               @keypress="validateNumber"
             />
           </td>
@@ -180,7 +180,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.type">
+            <select v-model="truckForm.Type">
               <option value="Full Sleeper">Full Sleeper</option>
               <option value="Single Cab">Single Cab</option>
               <option value="Single Axle">Single Axle</option>
@@ -190,13 +190,13 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.make" />
+            <input type="text" v-model="truckForm.Make" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <input type="text" v-model="truckForm.model" />
+            <input type="text" v-model="truckForm.Model" />
           </td>
           <td v-bind:class="{
           tge3ua: Trucks.length % 2 == 1,
@@ -204,7 +204,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.miles"
+              v-model="truckForm.CurrentMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -212,7 +212,7 @@
           tge3ua: Trucks.length % 2 == 1,
           tg7btt: Trucks.length % 2 == 0,
         }">
-            <select v-model="truckForm.status">
+            <select v-model="truckForm.Status">
               <option value="In Lot">In Lot</option>
               <option value="On Road">On Road</option>
               <option value="Maintenance">Maintenance</option>
@@ -224,7 +224,7 @@
         }">
             <input
               type="text"
-              v-model="truckForm.maintenance"
+              v-model="truckForm.LastMaintenenceMileage"
               @keypress="validateNumber"
             />
           </td>
@@ -250,7 +250,6 @@
 <script>
 var numeral = require("numeral");
 import store from "@/store/index.js";
-
 export default {
   name: "viewTrucks",
   components: {},
@@ -267,6 +266,9 @@ export default {
     editTruckToggle: function () {
       return store.state.editTruckToggle;
     },
+    session: function() {
+      return store.state.session;
+    }
   },
   filters: {
     formatNumber: function (value) {
@@ -277,42 +279,93 @@ export default {
     return {
       truckForm: {
         id: null,
-        dotID: "",
-        year: "",
-        type: "",
-        make: "",
-        model: "",
-        miles: "",
-        status: "",
-        maintenance: "",
+        DOTID: "",
+        Year: "",
+        Type: "",
+        Make: "",
+        Model: "",
+        CurrentMileage: "",
+        Status: "",
+        LastMaintenenceMileage: "",
       },
     };
   },
+  created: function() {
+    this.getTrucks();
+  },
   methods: {
+    getTrucks: function() {
+      const formdata = new FormData();
+      var vm = this;
+      
+      formdata.append("session", vm.session);
+      fetch("http://localhost/src/php/getTrucks.php", {
+        method: "post",
+        body: formdata
+      })
+      .then(response => response.json())
+      .then(function(data) {
+        store.state.Trucks = data.vehicles;
+        console.log(data)
+      })
+    },
     addTruck: function () {
-      this.truckForm.id = store.state.Trucks.length + 1;
-      store.commit("addTruck", this.truckForm);
-    },
-    clearForm: function () {
-      this.truckForm.id = null;
-      this.truckForm.dotID = "";
-      this.truckForm.year = "";
-      this.truckForm.type = "";
-      this.truckForm.make = "";
-      this.truckForm.model = "";
-      this.truckForm.miles = "";
-      this.truckForm.status = "";
-      this.truckForm.maintenance = "";
-    },
-
+            const formdata = new FormData();
+            var vm = this;
+            formdata.append("session", vm.session);
+            formdata.append("dotID",vm.truckForm.DOTID);
+            formdata.append("year",vm.truckForm.Year);
+            formdata.append("type",vm.truckForm.Type);
+            formdata.append("make",vm.truckForm.Make);
+            formdata.append("model",vm.truckForm.Model);
+            formdata.append("miles",vm.truckForm.CurrentMileage);
+            formdata.append("status",vm.truckForm.Status);
+            formdata.append("maintenance",vm.truckForm.LastMaintenenceMileage);
+            fetch("http://localhost/src/php/addTruck.php", {
+                method: "post",
+                body: formdata
+            })
+            .then(response => response.json())
+            .then(function (data) {
+                if(data.outcome == "success") {
+                  console.log(data);
+                  vm.truckForm.DOTID = "";
+                  vm.truckForm.Year = "";
+                  vm.truckForm.Type = "";
+                  vm.truckForm.Make = "";
+                  vm.truckForm.Model = "";
+                  vm.truckForm.CurrentMileage = "";
+                  vm.truckForm.Status = "";
+                  vm.truckForm.LastMaintenenceMileage = "";
+                  //vm.$router.go(); //this will refresh page after add and show updated table but also logs user out so need better way to refresh
+                } else {
+                    console.log(data);
+                }
+            });
+        },
     deleteTruck: function () {
-      store.state.Trucks.splice(store.state.editTruckIndex, 1);
+      var vm = this;
+      const formdata = new FormData();
+      formdata.append("session", vm.session);
+      formdata.append("dotID",store.state.Trucks[store.state.editTruckIndex].DOTID);
+      fetch("http://localhost/src/php/deleteTruck.php", {
+        method: "post",
+        body: formdata
+      })
+      .then(response => response.json())
+      .then(function (data) { 
+        if(data.outcome == "success") {
+          //vm.$router.go(); //this will refresh page after delete and show updated table but also logs user out so need better way to refresh
+          console.log(data);
+        } else {
+          console.log(data);
+        }
+      });
       store.state.editTruckToggle = !store.state.editTruckToggle;
     },
     addToggle() {
       store.state.addTruckToggle = !store.state.addTruckToggle;
       store.state.errors = [];
-      this.clearForm();
     },
     editToggle(i) {
       store.state.editTruckToggle = !store.state.editTruckToggle;
@@ -322,8 +375,31 @@ export default {
     },
     editForm() {
       if (this.checkForm()) {
-        this.deleteTruck();
-        this.addTruck();
+        const formdata = new FormData();
+        var vm = this;
+        formdata.append("session", vm.session);
+        formdata.append("dotID",store.state.Trucks[store.state.editTruckIndex].DOTID);
+        formdata.append("year",vm.truckForm.Year);
+        formdata.append("type",vm.truckForm.Type);
+        formdata.append("make",vm.truckForm.Make);
+        formdata.append("model",vm.truckForm.Model);
+        formdata.append("miles",vm.truckForm.CurrentMileage);
+        formdata.append("status",vm.truckForm.Status);
+        formdata.append("maintenance",vm.truckForm.LastMaintenenceMileage);
+        fetch("http://localhost/src/php/updateTruck.php", {
+          method: "post",
+          body: formdata
+        })
+        .then(response => response.json())
+        .then(function (data) { 
+          if(data.outcome == "success") {
+            //vm.$router.go(); //this will refresh page after update and show updated table but also logs user out so need better way to refresh
+            console.log(data);
+            vm.editToggle();
+          } else {
+            console.log(data);
+          }
+        });
       }
     },
     form() {
@@ -336,51 +412,49 @@ export default {
       store.state.errors = [];
       if (
         !(
-          this.truckForm.dotID == "" ||
-          this.truckForm.year == "" ||
-          this.truckForm.type == "" ||
-          this.truckForm.make == "" ||
-          this.truckForm.model == "" ||
-          this.truckForm.status == "" ||
-          this.truckForm.maintenance == "" ||
-          this.truckForm.miles == "" ||
-          this.truckForm.year < 1900 ||
-          this.truckForm.maintenance < 0 ||
-          this.truckForm.miles < 0
+          this.truckForm.DOTID == "" ||
+          this.truckForm.Year == "" ||
+          this.truckForm.Type == "" ||
+          this.truckForm.Make == "" ||
+          this.truckForm.Model == "" ||
+          this.truckForm.Status == "" ||
+          this.truckForm.LastMaintenenceMileage == "" ||
+          this.truckForm.CurrentMileage == "" ||
+          this.truckForm.Year < 1900 ||
+          this.truckForm.LastMaintenenceMileage < 0 ||
+          this.truckForm.CurrentMileage < 0
         )
       ) {
         return true;
       }
-
-      if (!this.truckForm.dotID) {
+      if (!this.truckForm.DOTID) {
         store.state.errors.push("DOT ID required.");
       }
-      if (!this.truckForm.year) {
+      if (!this.truckForm.Year) {
         store.state.errors.push("Year required.");
-      } else if (this.truckForm.year < 1900) {
+      } else if (this.truckForm.Year < 1900) {
         store.state.errors.push("Year must be greater than 1900.");
       }
-
-      if (!this.truckForm.type) {
+      if (!this.truckForm.Type) {
         store.state.errors.push("Type required.");
       }
-      if (!this.truckForm.make) {
+      if (!this.truckForm.Make) {
         store.state.errors.push("Make required.");
       }
-      if (!this.truckForm.model) {
+      if (!this.truckForm.Model) {
         store.state.errors.push("Model required.");
       }
-      if (!this.truckForm.miles) {
+      if (!this.truckForm.CurrentMileage) {
         store.state.errors.push("Miles required.");
-      } else if (this.truckForm.miles < 0) {
+      } else if (this.truckForm.CurrentMileage < 0) {
         store.state.errors.push("Miles must be greater than 0.");
       }
-      if (!this.truckForm.status) {
+      if (!this.truckForm.Status) {
         store.state.errors.push("Status required.");
       }
-      if (!this.truckForm.maintenance) {
+      if (!this.truckForm.LastMaintenenceMileage) {
         store.state.errors.push("Last maintenance Milage required.");
-      } else if (this.truckForm.maintenance < 0) {
+      } else if (this.truckForm.LastMaintenenceMileage < 0) {
         store.state.errors.push(
           "Last maintenance Milage must be greater than 0."
         );

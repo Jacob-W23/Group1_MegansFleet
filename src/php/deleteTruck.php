@@ -2,12 +2,16 @@
 
 require_once "config.php";
 
-session_id($_POST['session']);
+$session = $_POST["session"];
+
+session_id($session);
 session_start();
 
-if ($_SESSION['auth'] && isset($_POST['id']))
+$auth = $_SESSION["auth"];
+
+if (isset($_POST['dotID']) && $auth)
 {
-    $id = $_POST['id'];
+    $dotID = $_POST['dotID'];
 
     $connection = new mysqli($hn, $un, $pw, $db);
 
@@ -18,13 +22,13 @@ if ($_SESSION['auth'] && isset($_POST['id']))
     }
     else
     {
-        $stmt = $connection->prepare("DELETE FROM vehicles WHERE id=?"); //modify as needed
-        $stmt->bind_param("i", $id);
+        $stmt = $connection->prepare("DELETE FROM vehicles WHERE dotid=?"); //modify as needed
+        $stmt->bind_param("s", $dotID);
 
         if ($stmt->execute())
         {
             $response['outcome'] = "success";
-            $response['err-msg'] = "vehicle id $id deleted";
+            $response['err-msg'] = "vehicle id $dotID deleted";
         }
         else
         {
